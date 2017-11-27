@@ -1,0 +1,200 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+
+/**
+ * Homepage
+ *
+ * @ORM\Table(name="homepage")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HomepageRepository")
+ * 
+ */
+class Homepage
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sliderTitle", type="string", length=255, nullable=true)
+     */
+    private $sliderTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sliderSubTitle", type="string", length=255, nullable=true)
+     */
+    private $sliderSubTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sliderIcon", type="string", length=255, nullable=true)
+     */
+    private $sliderIcon;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lead", type="text", nullable=true)
+     */
+    private $lead;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set sliderTitle
+     *
+     * @param string $sliderTitle
+     *
+     * @return Homepage
+     */
+    public function setSliderTitle($sliderTitle)
+    {
+        $this->sliderTitle = $sliderTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderTitle
+     *
+     * @return string
+     */
+    public function getSliderTitle()
+    {
+        return $this->sliderTitle;
+    }
+
+    /**
+     * Set sliderSubTitle
+     *
+     * @param string $sliderSubTitle
+     *
+     * @return Homepage
+     */
+    public function setSliderSubTitle($sliderSubTitle)
+    {
+        $this->sliderSubTitle = $sliderSubTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderSubTitle
+     *
+     * @return string
+     */
+    public function getSliderSubTitle()
+    {
+        return $this->sliderSubTitle;
+    }
+
+    /**
+     * Set sliderIcon
+     *
+     * @param string $sliderIcon
+     *
+     * @return Homepage
+     */
+    public function setSliderIcon($sliderIcon)
+    {
+        if (!in_array($sliderIcon, ["/icon/crew.png", "/icon/group.png", "/icon/hands.png", "/icon/together.png"])) {
+            $sliderIcon = null;
+        }
+        $this->sliderIcon = $sliderIcon;
+
+        return $this;
+    }
+
+    /**
+     * Get sliderIcon
+     *
+     * @return string
+     */
+    public function getSliderIcon()
+    {
+        return $this->sliderIcon;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Homepage
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set lead
+     *
+     * @param string $lead
+     *
+     * @return Homepage
+     */
+    public function setLead($lead)
+    {
+        $this->lead = $lead;
+
+        return $this;
+    }
+
+    /**
+     * Get lead
+     *
+     * @return string
+     */
+    public function getLead()
+    {
+        return $this->lead;
+    }
+}

@@ -1,0 +1,871 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block body %}
+    {% if home %}
+        {% set curHome = home|first() %}
+        {% if slides %}
+            <header class="topslider">
+            <style type="text/css">
+                @media screen and (min-width: 769px) {
+                    .topslider {
+                        height: 100%;
+                        min-height: 100%;
+                        overflow: hidden;
+                        margin-bottom: 11px;
+                    }
+                    
+                    .topslider > .flexslider, .topslider > .flexslider > .slides, .topslider > .flexslider > .slides > li {
+                        height: 100%;
+                        margin-bottom: 0;
+                    }
+                    
+                    .topslider > .flexslider > .slides > li {
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center top;
+                    }
+                    
+                    .topslider > .flexslider > .slides > li > img {
+                        display: none;
+                    }
+                }
+            </style>
+            <!-- flexslider -->
+            <div class="flexslider wrapper100percent">
+            <ul class="slides">
+                {% for slide in slides %}
+                    {% if slide.image %}
+                        <li style="background-image: url('{{ vich_uploader_asset(slide, 'imageFile') }}" alt="" /></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            </div>
+            <!-- flexslider end -->
+            {% if curHome.sliderIcon or curHome.sliderTitle or curHome.sliderSubTitle %}
+                <section class="slidertexthide slidertext startAnimation animated" data-animate="fadeInUp">
+                    <div class="slidertextinner">
+                        {% if curHome.sliderIcon %}<img src="{{ curHome.sliderIcon }}" />{% endif %}
+                        {% if curHome.sliderTitle %}<h1>{{ curHome.sliderTitle }}</h1>{% endif %}
+                        {% if curHome.sliderSubTitle %}<h2>{{ curHome.sliderSubTitle }}</h2>{% endif %}
+                    </div>
+                </section>
+            {% endif %}
+            </header> 
+            <!-- topslider end -->
+        {% endif %}
+        {% if curHome.title or curHome.lead %}
+            <div class="undersliderwrapper">  
+                <div class="container"> 
+                    <div class="row"> 
+                        <section class="col-lg-12 underslider startAnimation animated" data-animate="fadeInUp">  
+                            {% if curHome.title %}<h3>{{ curHome.title }}</h3>{% endif %}
+                            {% if curHome.lead %}<h4>{{ curHome.lead|nl2br }}</h4>{% endif %}
+                        </section> 
+                    </div> 
+                </div>
+            </div> 
+        {% endif %}
+    {% endif %}
+    {% if goal %}
+        <!-- one section --> 
+        <section class="wrapper100percent section1 serviceswrapper">
+        <div class="sectionwrapper" id="1"></div> 
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="mainheadlinewrapper">
+                <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+                <h2>Unsere Ziele</h2>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- icons columns --> 
+        <div class="services">
+        <div class="row servicecolumn">
+            {% for entry in goal %}
+                <!-- one column --> 
+                <div class="col-sm-4 servicecolumnone startAnimation animated" data-animate="slideInLeft">
+                {% if entry.icon %}<img src="{{ entry.icon }}" alt=""/>{% endif %}
+                {% if entry.title %}<h4><span>{{ entry.title }}</span></h4>{% endif %}
+                {% if entry.text %}<p>
+                    {{ entry.text|nl2br }}
+                </p>{% endif %}
+                </div>
+                <!-- one column end--> 
+            {% endfor %}
+        </div>
+        </div>
+        <!-- icon columns end -->
+        </div>
+        <!-- container end --> 
+        </section>
+        <!-- one section end -->
+    {% endif %}
+    {% if events %}
+        <!-- one section --> 
+        <section class="wrapper100percent section2">
+        <div id="2" class="sectionwrapper"></div> 
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="mainheadlinewrapper">
+                <div class="mainheadline  textleft startAnimation animated" data-animate="fadeInUp">
+                <h2>Nächste Veranstaltungen</h2>
+                </div>
+            </div>
+            </div>
+        </div> 
+        <div class="row startAnimation animated" data-animate="fadeInUp">
+            <!-- events --> 
+            <div class="col-sm-8 eventswrapper">
+            {% for event in events %}
+                <!-- one event --> 
+                <div class="oneevent">
+                    <div class="eventsdate">
+                    <p><span>{{ event.date|date('d.') }}</span></p>
+                    <p>{{ event.date|date('M') }}</p>
+                    <p>{{ event.date|date('Y') }}</p>
+                    </div>
+                    <div class="eventstext">
+                    <h4>{{ event.name }}</h4>
+                    <ul>
+                    <li>Ort: <b>{{ event.place }}</b></li>
+                    <li>Zeit: <b>{{ event.date|date('H:i') }}</b></li>
+                    </ul>
+                    {% if event.lead %}<p>{{ event.lead }}</p>{% endif %}
+                    <a class="eventslink" href="#">mehr Informationen <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <!-- one event end --> 
+            {% endfor %}
+            </div>
+            <!-- events end --> 
+            <div class="col-sm-4">
+            <h5><span>Komm vorbei und engagiere dich!</span></h5>
+            <p>Leitfaden/Grundsätze der ASS. Wir setzen uns für eine Barierenfreie Bildung für alle ein, unabhängig von ..., ..., ... und so weiter.
+            </p>
+            <p>Leitfaden/Grundsätze der ASS. Wir setzen uns für eine Barierenfreie Bildung für alle ein, unabhängig von ..., ..., ... und so weiter.
+            </p>
+            <p>Leitfaden/Grundsätze der ASS. Wir setzen uns für eine Barierenfreie Bildung für alle ein, unabhängig von ..., ..., ... und so weiter.
+            </p>
+            <p>Leitfaden/Grundsätze der ASS. Neben klassischen Bildungsangeboten veranstalten wir auch ..., ..., ...
+            </p>  
+            <p>Haben wir dein Interesse geweckt, dann komm vorbei!
+            </p>
+            <a class="btn btn-5 btn-5a icon-chevron-right" href="#"><span>Weitere Veranstaltungen</span></a>
+            </div>
+            <!-- col-sm-4 end --> 
+        </div>
+        <!-- row end --> 
+        </div>
+        <!-- container end --> 
+        </section>
+        <!-- one section end --> 
+    {% endif %}
+    <!-- one section -->
+    <section class="wrapper100percent section2">
+     <div class="sectionwrapper"></div> 
+       <div class="container">
+         <div class="row">
+           <div class="col-lg-12">
+             <div class="mainheadlinewrapper">
+               <div class="mainheadline startAnimation animated fadeInUp" data-animate="fadeInUp" style="opacity: 1;">
+                 <h2>Kontakt</h2>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="wrapper100percent">
+         <div class="container">
+           <div class="row">
+             <div class="col-sm-4 col-sm-push-2 address">
+               <i class="fa fa-map-marker"></i>
+               <ul>
+                 <li><h4>Adresse</h4><p>Autonome Schule Schaffhausen, Pfarrweg 1, 8200 Schaffhausen</p></li>
+               </ul>
+             </div>
+             <div class="col-sm-4 col-sm-push-2 address">
+               <i class="fa fa-envelope"></i>
+               <ul><li><h4>E-Mail</h4><p><a href="mailto:info@autonome-schule-sh.ch" style="color: white;">info@autonome-schule-sh.ch</a></p></li>
+               </ul>
+             </div>
+                        </div>
+         </div>
+       </div>
+       <div class="wrapper100percent map">
+         <div class="mapoverlay" onclick="style.pointerEvents='none'"></div>
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.278523593865!2d8.635219351517344!3d47.698429879088685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47907f6103afbf53%3A0x6eda0c29e61c37d3!2sUnia+Sektion+Schaffhausen!5e0!3m2!1sde!2sch!4v1451868116866" style="border:0" allowfullscreen="" frameborder="0"></iframe>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <br><br><br><br><br>
+            <h4>Spendenkonto: CH32 0078 2008 2442 6810 1</h4>
+            <br><br><br>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- one section end -->
+{% endblock %}
+{#
+
+
+
+<section class="wrapper100percent section1" id="3">
+<div class="sectionwrapper"></div> 
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+        <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+        <h2>Letzte Blogeinträge</h2>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+<div class="container startAnimation animated" data-animate="fadeInUp">
+<div class="row bloghomepage" id="owl-demo1">
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/4.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p>Von: <a href="">Admin</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/5.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Schulteam</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/6.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Schulteam</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/7.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Admin</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/5.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Schulteam</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/4.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Admin</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+    <!-- one item --> 
+    <div class="col-lg-12">
+    <div class="item">
+        <img src="images/7.jpg" alt="picture"/>
+        <div class="owl-theme-inner">
+        <div class="homeblogmeta">
+            <p><i class="fa fa-user"></i> <a href="">Admin</a></p>   
+            <p class="no-border"><i class="fa fa-clock-o"></i> <span>11. Nov 2015</span></p>                                          
+        </div>
+        <div class="owl-theme-inner-text">				 
+            <h4>Blog Titel</h4>			     
+            <p>Donec orci arcu, varius at bibendum ac, pulvinar quis lorem ipsum dolor...
+            </p>
+            <a href="">mehr</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- one item end --> 
+</div>
+<div class="row marginbottom1">
+    <div class="col-lg-12 textcenter">
+    <a class="btn btn-2 btn-2b" href="#"><span>Alle Blogeinträge</span></a>
+    </div>
+</div>
+</div>
+<!-- container end --> 
+</section>
+<!-- one section end --> 
+<!-- one section --> 
+<section class="wrapper100percent section2">
+<div class="sectionwrapper" id="4"></div> 
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+        <div class="mainheadline textleft startAnimation animated" data-animate="fadeInUp">
+        <h2>Unsere Grundsätze</h2>
+        </div>
+    </div>
+    </div>
+    <!-- col-lg-12 end--> 
+</div>
+<!-- row end --> 
+<div class="row startAnimation animated" data-animate="fadeInUp">
+    <div class="col-sm-6">
+    <!-- one row --> 
+    <div class="onelist">
+        <div class="aboutusleft">
+        <i class="fa fa-arrow-right"></i>
+        </div>
+        <div class="eventstext">
+        <h4>Offen für alle</h4>
+        <p>Wir wollen für alle Menschen offen sein, unabhängig von ..., ..., ...
+        </p>
+        </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist">
+        <div class="aboutusleft">
+        <i class="fa fa-arrow-right"></i>
+        </div>
+        <div class="eventstext">
+        <h4>Grundsatz 2</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+        </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist">
+        <div class="aboutusleft">
+        <i class="fa fa-arrow-right"></i>
+        </div>
+        <div class="eventstext">
+        <h4>Grundsatz 3</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+        </div>
+    </div>
+    <!-- one row end --> 
+    </div>
+    <!-- col-sm-6 end --> 
+    <div class="col-sm-6">
+    <h5><span>Das sind wir</span></h5>
+    <p>Zusammenfassung der Autonomen Schule Schaffhausen. z.B. ein kurzer Pressetext oder so. Sed non neque elit. Sed ut imperdiet nisi.  Sed nisi proin condimentum fermentum nibhquise vel velit auctor aliquet. Aenean solli citudin.
+Sed non neque elit. Sed ut imperdiet nisi.  Sed nisi proin condimentum fermentum nibhquise vel velit auctor aliquet. Aenean solli citudin.
+    </p>
+    <p>Sed non neque elit. Sed non neque elit.  SSed non neque elit.  Sed non neque elit. Sed ut imperdiet nisi.  Sed nisi proin condimentum fermentum nibhquise vel velit auctor aliquet. Aenean solli citudin.
+    </p>
+    <a class="btn btn-5 btn-5a icon-chevron-right" href="#"><span>mehr erfahren</span></a>
+    </div>
+    <!-- col-sm-6 end --> 
+</div>
+<!-- row end --> 
+</div>
+<!-- container end --> 
+</section>
+<!-- one section end -->
+<!-- one section --> 
+<!--<section class="wrapper100percent section1">
+<div class="sectionwrapper"></div> 
+<div class="row">
+<div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+    <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+        <h2>Meet the <span>team</span></h2>
+    </div>
+    </div>
+</div>
+</div>
+<div class="container">
+<div class="row teamcolumnwrapper">
+    <div class="col-lg-3 col-md-3 col-sm-3 teamcolumn startAnimation animated" data-animate="slideInLeft">
+    <img src="images/team1.jpg" alt="">
+    <div class="teamcolumninner">
+        <h3>John Doe</h3>
+        <p>Team member</p>
+        <a href="https://www.facebook.com/pages/Rayoflightthemes/408688349185439"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+    </div><!--/teamcolumninner end--> 
+    <!--</div><!--/teamcolumn end--> 
+    <!--<div class="col-lg-3 col-md-3 col-sm-3 teamcolumn startAnimation animated" data-animate="fadeInUp">
+    <img src="images/team2.jpg" alt="">
+    <div class="teamcolumninner">
+        <h3>Jane Doe</h3>
+        <p>Team member</p>
+        <a href="https://www.facebook.com/pages/Rayoflightthemes/408688349185439"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+    </div><!--/teamcolumninner end--> 
+    <!--</div><!--/teamcolumn end--> 
+    <!--<div class="col-lg-3 col-md-3 col-sm-3 teamcolumn startAnimation animated" data-animate="fadeInUp">
+    <img src="images/team3.jpg" alt="">
+    <div class="teamcolumninner">
+        <h3>John Doe</h3>
+        <p>Team member</p>
+        <a href="https://www.facebook.com/pages/Rayoflightthemes/408688349185439"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+    </div><!--/teamcolumninner end--> 
+    <!--</div><!--/teamcolumn end--> 
+    <!--<div class="col-lg-3 col-md-3 col-sm-3 teamcolumn startAnimation animated" data-animate="slideInRight">
+    <img src="images/team2.jpg" alt="">
+    <div class="teamcolumninner">
+        <h3>Jane Doe</h3>
+        <p>Team member</p>
+        <a href="https://www.facebook.com/pages/Rayoflightthemes/408688349185439"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+    </div><!--/teamcolumninner end--> 
+    <!--</div><!--/teamcolumn end--> 
+<!--</div><!--/row end--> 
+<!--</div><!--/container end--> 
+<!--</section><!--/one section end--> 
+<section class="wrapper100percent section3">
+<div class="section3inner">
+<div class="sectionwrapper"></div> 
+<div class="row">
+    <div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+        <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+        <h2>Zitate</h2>
+        </div>
+    </div>
+    </div><!--/col-lg-12 end--> 
+</div><!--/row end--> 
+<div class="row">
+    <div class="col-lg-12 quotewrapper">
+    <i class="fa fa-quote-right"></i>
+    <ul class="bxtestimonials animated" id="bxtestimonials" data-animate="fadeInUp">
+        <li><p>Die Autonome Schule Schaffhausen leistet einen wichtigen Beitrag zu blablabla im Kanton Schaffhausen
+        </p>
+        <p class="cite"><span>Vorname Nachname,</span> Kantonsrat</p>
+        </li>
+        <li><p>Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.
+        </p>
+        <p class="cite"><span>Vorname Nachname,</span> Berufsschullehrerin</p>
+        </li>
+        <li>
+        <p>Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.
+        </p><p class="cite"><span>Vorname Nachname,</span> Kantonsrat</p>
+        </li>
+        <li><p>Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.
+        </p>
+        <p class="cite"><span>Vorname Nachname,</span> Berufsschullehrerin</p>
+        </li>
+    </ul>
+    </div><!--/col-lg-12 end--> 
+</div><!--/row end--> 
+</div><!--/section3inner end-->
+</section><!--/one section end--> 
+<!--<section class="wrapper100percent section1">
+<div class="sectionwrapper" id="5"></div> 
+<div class="row startAnimation animated" data-animate="fadeInUp">
+<div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+    <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+        <h2>Galerie</h2>
+    </div>
+    </div>
+</div>
+</div>
+<!-- gallery --> 
+<!--<div class="startAnimation animated" data-animate="fadeInUp">
+<!-- grid -->
+<!--<div class="grid">
+    <figure class="effect-sadie">
+    <img src="images/4.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/4.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/5.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/5.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/6.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/6.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/7.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/7.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/8.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/8.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/9.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/9.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/10.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/10.jpg"></a>
+    </figcaption>			
+    </figure>
+    <figure class="effect-sadie">
+    <img src="images/11.jpg" alt=""/>
+    <figcaption>
+        <h2>Image <span>One</span></h2>
+        <p>Lorem ipsum dolor sit amet lorem ipsum dolor.</p>
+        <a class='imagepopup' href="images/11.jpg"></a>
+    </figcaption>			
+    </figure>
+</div>
+<!-- grid end --> 
+<!--</div> 
+<!-- gallery end --> 
+<!--</section>
+<!-- one section end -->
+<!-- one section --> 
+<section class="wrapper100percent section2" id="6">
+<div class="sectionwrapper"></div> 
+<div class="container">
+<div class="row startAnimation animated" data-animate="fadeInUp">
+    <div class="col-lg-12">
+    <div class="mainheadlinewrapper">
+        <div class="mainheadline textleft startAnimation animated" data-animate="fadeInUp">
+        <h2>Frequently Asked Questions</h2>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+<div class="container startAnimation animated" data-animate="fadeInUp">
+<div class="row">
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>01.</p>
+    </div>
+    <div class="eventstext">
+        <h4>Warum braucht es die ASS?</h4>
+        <p>Es braucht die ASS weil...
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>02.</p>
+    </div>
+    <div class="eventstext">
+        <h4>Wie finanziert sich die ASS?</h4>
+        <p>Die ASS finanziert sich durch ...
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>03.</p>
+    </div>
+    <div class="eventstext">
+        <h4>FAQ Frage?</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>04.</p>
+    </div>
+    <div class="eventstext">
+        <h4>FAQ Frage?</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>05.</p>
+    </div>
+    <div class="eventstext">
+        <h4>FAQ Frage?</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+    <!-- one row --> 
+    <div class="onelist col-lg-6">
+    <div class="faqicon">
+        <p>06.</p>
+    </div>
+    <div class="eventstext">
+        <h4>FAQ Frage?</h4>
+        <p>Aenean solli citudin nibhquise vel velit auctor aliquet. Aenean solli citudin nibhquise vel velit auctor aliquet. 
+        </p>
+    </div>
+    </div>
+    <!-- one row end --> 
+</div>
+</div>
+</section>
+<!-- one section end --> 
+<!-- one section --> 
+<section class="wrapper100percent section1" id="7">
+<div class="sectionwrapper"></div> 
+<div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="mainheadlinewrapper">
+        <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+            <h2>Kontakt Informationen</h2>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="wrapper100percent">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4 address">
+        <i class="fa fa-map-marker"></i>
+        <ul>
+            <li><h4>Adresse</h4><p>Autonome Schule Schaffhausen, Strasse Nr, 8200 Schaffhausen</p></li>
+        </ul>
+        </div>
+        <div class="col-sm-4 address">
+        <i class="fa fa-phone"></i>
+        <ul><li><h4>Telefon</h4><p><a href="callto:123">+41 (0)52 ... .. ..</a></p></li>
+        </ul>
+        </div>
+        <div class="col-sm-4 address">
+        <i class="fa fa-envelope"></i>
+        <ul><li><h4>E-Mail</h4><p><a href="mailto:">info@domain.ch</a></p></li>
+        </ul>
+        </div>
+    </div>
+    </div>
+</div>
+<!--<div class="wrapper100percent map">
+    <div class="mapoverlay" onClick="style.pointerEvents='none'"></div>
+    <iframe src="https://maps.google.com/maps?sll=42.3232039,-71.1423464&amp;sspn=0.0974788,0.1757965&amp;q=new+yourk+near+Brookline,+MA&amp;ie=UTF8&amp;hq=new+york&amp;hnear=Brookline,+Norfolk+County,+Massachusetts&amp;t=m&amp;ll=42.343748,-71.142702&amp;spn=0.081827,0.222714&amp;output=embed">
+    </iframe>
+    </div>-->
+<div class="wrapper100percent">
+    <div class="container startAnimation animated" data-animate="fadeInUp">
+    <div class="row">
+        <div class="col-sm-12 textcenter">
+        <h4>Kontakt aufnehmen</h4>
+        <!-- comment-form -->
+        <div>
+            <form method="post" action="">
+            <div>
+                <div id="main">
+                <div class="col-sm-6">
+                    <div class="contact1">
+                    <p><input type="text" placeholder="Name" name="name" id="name" class="commentfield" />
+                    </p> 
+                    </div>
+                    <div class="contact2">
+                        <p> <input type="text" placeholder="E-Mail" name="email" id="email" class="commentfield" />
+                        </p> 
+                    </div>
+                    <div class="contact2">
+                    <p> <input type="text" placeholder="Betref" name="subject" id="subject" class="commentfield" /> 
+                    </p> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <p><textarea name="comments" placeholder="Nachricht" id="comments" rows="12" cols="5" class="textarea"></textarea>
+                    </p>
+                    <div class="buttoncontactwrapper">
+                    <p><input type="submit"  name="submit"  class="buttoncontact" id="submit" value="absenden"/>
+                    </p>
+                    </div>
+                </div>
+                <ul class="col-sm-12" id="response"></ul> 
+                </div>
+            </div>
+            </form> 
+        </div>
+        </div>
+        <!-- comment-form-end --> 
+    </div>
+    </div>
+</div>
+</section>
+<!-- one section end -->
+<!-- one section --> 
+<section class="wrapper100percent section4">
+<div class="section4inner">
+<div class="sectionwrapper"></div> 
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="mainheadlinewrapper">
+            <div class="mainheadline startAnimation animated" data-animate="fadeInUp">
+            <h2>In Kontakt bleiben</h2>
+            </div>
+        </div>
+        </div>
+    <ul class="socialicons col-lg-12 startAnimation animated" data-animate="fadeInUp"> 
+        <li> 
+        <a href="https://www.facebook.com/pages/Rayoflightthemes/408688349185439"><i class="fa fa-facebook"></i></a> 
+        </li> 
+        <li> 
+        <a href=""><i class="fa fa-twitter"></i></a> 
+        </li> 
+        <li> 
+        <a href=""><i class="fa fa-linkedin"></i></a> 
+        </li> 
+        <li> 
+        <a href=""><i class="fa fa-dribbble"></i></a> 
+        </li> 
+        <li> 
+        <a href=""><i class="fa fa-google"></i></a> 
+        </li>
+        <li> 
+        <a href=""><i class="fa fa-youtube"></i></a> 
+        </li>
+        <li> 
+        <a href=""><i class="fa fa-skype"></i></a> 
+        </li>   
+        <li> 
+        <a href=""><i class="fa fa-behance"></i></a> 
+        </li>   
+        <li> 
+        <a href=""><i class="fa fa-delicious"></i></a> 
+        </li> 
+        <li> 
+        <a href=""><i class="fa fa-tumblr"></i></a> 
+        </li>     
+        <li> 
+        <a href=""><i class="fa fa-wordpress"></i></a> 
+        </li>   
+    </ul> 
+    </div> 
+    </div> 
+    <div class="wrapper100percent">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 twitterwrapper startAnimation animated" data-animate="fadeInUp">
+                <div class="twittericon">
+                <i class="fa fa-twitter"></i>
+                </div>
+                <div class="twitter startAnimation animated" data-animate="fadeInUp">
+                <div id="example1"></div>
+                </div>
+                <a href="" class="btn btn-5 btn-5a icon-twitter"><span>follow us</span></a>
+            </div> 
+            </div> 
+        </div> 
+        </div> 
+    </div> 
+</section>#}

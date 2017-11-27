@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Autonome Schule Schaffhausen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans:400,700'>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% stylesheets
+        'bundles/app/assets/css/bootstrap.css'
+        'bundles/app/assets/css/style.css'
+        'bundles/app/assets/css/font-awesome.css'
+        'bundles/app/assets/css/flexslider.css'
+        'bundles/app/assets/css/animate.css'
+        'bundles/app/assets/css/bxslider.css'
+        'bundles/app/assets/css/owl.carousel.css'
+        'bundles/app/assets/css/owl.theme.css'
+        'bundles/app/assets/css/colorbox.css'
+        filter='scssphp,cssrewrite' output='css/app.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body class="loading" data-spy="scroll">        
+  <div id="home"></div> 
+    <!-- menu -->
+    <nav class="navbar sticker wrapper100percent">
+      <a class="navbar-brand" href="{{ path('app_default_index') }}">
+        Autonome Schule Schaffhausen
+      </a>
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" type="button">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+        <div class="cl-effect-12">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="{{ path('app_default_index') }}">Home</a></li>
+			<li><a href="{{ path('app_default_index') }}#events">Veranstaltungen</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block body %}{% endblock %}
+    <!-- menu end -->
+    <footer class="bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+                      </div> 
+          <div class="col-lg-6">
+            <div class="scrollbutton">
+              <a href="javascript:scrollToTop()" title="go to top"><i class="fa fa-chevron-up"></i></a>
+            </div> 
+          </div>
+		</div>
+      </div>
+      <div class="wrapper100percent copyrightwrapper">
+       <div class="copyright wrapper100percent">
+         <p>Autonome Schule Schaffhausen</p>
+         <p>created by <a href="https://pascalwacker.ch">Pascal Wacker</a></p>
+        </div>
+      </div>
+    </footer>
+    {% javascripts
+        '@AppBundle/Resources/public/assets/js/jquery.js'
+        '@AppBundle/Resources/public/assets/js/jquery-migrate.js'
+        '@AppBundle/Resources/public/assets/js/bootstrap.js'	
+        '@AppBundle/Resources/public/assets/js/flexslider.js'
+        '@AppBundle/Resources/public/assets/js/sticky.js'
+        '@AppBundle/Resources/public/assets/js/colorbox.js'
+        '@AppBundle/Resources/public/assets/js/bxslider.js'
+        '@AppBundle/Resources/public/assets/js/owl-carousel.js'
+        '@AppBundle/Resources/public/assets/js/parallax.js'
+        '@AppBundle/Resources/public/assets/js/waypoints.js'
+        '@AppBundle/Resources/public/assets/js/masonry.js'
+        '@AppBundle/Resources/public/assets/js/twitter.js'
+        '@AppBundle/Resources/public/assets/js/scriptcontact.js'
+        '@AppBundle/Resources/public/assets/js/retina.js'
+        '@AppBundle/Resources/public/assets/js/scripts.js'
+        filter='?jsqueeze' output='js/jquery.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+  </body>
+</html>
